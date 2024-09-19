@@ -1,4 +1,3 @@
-import { Data, InputIds, OutputIds, SlotIds } from './constants';
 import { createItem, updateIO, getFocusTab, removeIOAndSlot } from './common';
 
 export default {
@@ -10,7 +9,7 @@ export default {
     style.height = 'auto';
   },
   ':root': {
-    items({ }: EditorResult<Data>, cate1, cate2, cate3) {
+    items({ }, cate1, cate2, cate3) {
       cate1.title = '常规';
       cate1.items = [
         {
@@ -18,7 +17,7 @@ export default {
           type: 'Button',
           description: '新增一个标签页，增加一个标签页插槽、标签页显示和隐藏输出',
           value: {
-            set({ data, slots, output, env }: EditorResult<Data>) {
+            set({ data, slots, output, env }) {
               const newItem = createItem(data);
               slots.add({
                 id: newItem.id,
@@ -56,10 +55,10 @@ export default {
             { value: 'border-card', label: '带边框的卡片' }
           ],
           value: {
-            get({ data }: EditorResult<Data>) {
+            get({ data }) {
               return data.type;
             },
-            set({ data }: EditorResult<Data>, value: string) {
+            set({ data }, value) {
               data.type = value;
             }
           }
@@ -75,10 +74,10 @@ export default {
             { label: '下', value: 'bottom' }
           ],
           value: {
-            get({ data }: EditorResult<Data>) {
+            get({ data }) {
               return data.tabPosition || 'top';
             },
-            set({ data }: EditorResult<Data>, value: 'left' | 'top' | 'bottom' | 'right') {
+            set({ data }, value: 'left' | 'top' | 'bottom' | 'right') {
               data.tabPosition = value;
             }
           }
@@ -93,7 +92,7 @@ export default {
               description: '点击标签页时触发【标签页点击】输出项事件',
               options: () => {
                 return {
-                  outputId: OutputIds.OnTabClick
+                  outputId: 'tabClick'
                 };
               }
             }
@@ -136,7 +135,7 @@ export default {
   },
   '.el-tabs__item': {
     title: '标签',
-    items: (props: EditorResult<any>, cate1, cate2, cate3) => {
+    items: (props, cate1, cate2, cate3) => {
       if (!props.focusArea) return;
       const item = getFocusTab(props);
       cate1.title = '常规';
@@ -149,10 +148,10 @@ export default {
             locale: true
           },
           value: {
-            get({ }: EditorResult<any>) {
+            get({ }) {
               return item?.name;
             },
-            set({ input, output, slots, env }: EditorResult<any>, title: string) {
+            set({ input, output, slots, env }, title: string) {
               item.name = title;
               updateIO({ input, output, item, slots, env });
             }
@@ -166,10 +165,10 @@ export default {
               type: 'Button',
               description: '向前移动该标签页',
               value: {
-                get({ focusArea }: EditorResult<any>) {
+                get({ focusArea }) {
                   return focusArea.index;
                 },
-                set({ data, focusArea }: EditorResult<any>) {
+                set({ data, focusArea }) {
                   const { index } = focusArea;
                   const { tabList } = data;
                   if (index === 0) return;
@@ -182,10 +181,10 @@ export default {
               type: 'Button',
               description: '向后移动该标签页',
               value: {
-                get({ focusArea }: EditorResult<any>) {
+                get({ focusArea }) {
                   return focusArea.index;
                 },
-                set({ data, focusArea }: EditorResult<any>) {
+                set({ data, focusArea }) {
                   const { index } = focusArea;
                   const { tabList } = data;
                   if (index === tabList.length - 1) return;
@@ -198,10 +197,10 @@ export default {
               type: 'Button',
               description: '删除该标签页',
               value: {
-                get({ focusArea }: EditorResult<any>) {
+                get({ focusArea }) {
                   return focusArea.index;
                 },
-                set(props: EditorResult<any>) {
+                set(props) {
                   const { data, focusArea } = props;
                   if (data.tabList.length > 1) {
                     const item = data.tabList[focusArea.index];
@@ -221,12 +220,12 @@ export default {
     '@dblclick': {
       type: 'text',
       value: {
-        get(props: EditorResult<any>) {
+        get(props) {
           const item = getFocusTab(props);
           console.log("双击聚焦的item",item);
           return item?.name;
         },
-        set(props: EditorResult<any>, title: string) {
+        set(props, title) {
           const item = getFocusTab(props);
           item.name = title;
           const { input, output, slots, env } = props;

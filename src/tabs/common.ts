@@ -1,4 +1,12 @@
-import { uuid } from '../utils/index';
+function uuid(pre = 'u_', len = 6) {
+  const seed = 'abcdefhijkmnprstwxyz0123456789', maxPos = seed.length;
+  let rtn = '';
+  for (let i = 0; i < len; i++) {
+    rtn += seed.charAt(Math.floor(Math.random() * maxPos));
+  }
+  return pre + rtn;
+}
+
 export const createItem = (data): any => {
   const key = uuid();
   return {
@@ -36,7 +44,7 @@ export const updateIO = ({
   slots.get(item.key) && slots.get(item.key)!.setTitle(`${name}`);
 };
 
-export const removeIOAndSlot = (props: EditorResult<any>, item: any) => {
+export const removeIOAndSlot = (props, item: any) => {
   const { input, output, slots } = props;
   const { key, id } = item;
   slots.remove(id);
@@ -47,7 +55,7 @@ export const removeIOAndSlot = (props: EditorResult<any>, item: any) => {
   }
 };
 
-export const getFocusTab = (props: EditorResult<any>) => {
+export const getFocusTab = (props) => {
   const { data, focusArea } = props;
   if (!focusArea) return {};
   const { index } = focusArea;

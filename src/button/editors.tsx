@@ -14,7 +14,7 @@ export default {
           return !data.asHotarea;
         },
         options: ["font", "padding", "border", "background", "boxShadow"],
-        target: ".button",
+        target: ".ant-btn",
       },
     ],
     items: [

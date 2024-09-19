@@ -1,5 +1,5 @@
 <template>
-  <Button class="button" @click="onClick">{{ props.data.text }}</Button>
+  <Button @click="onClick">{{ props.data.text }}</Button>
 </template>
 <script setup>
 
@@ -24,7 +24,12 @@ onMounted(() => {
 
 </script>
 <style scoped>
-.button {
+:global(.ant-btn) {
+  width: 100%;
+  height: 100%;
+}
+
+/* .button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -37,5 +42,5 @@ onMounted(() => {
   border: 1px solid #1677ff;
   width: 100%;
   height: 100%;
-}
+} */
 </style>
