@@ -1,7 +1,5 @@
-import { Data } from '../constants';
-// import { getFilterSelector } from '../../utils/cssSelector';
 import { InputIds, OutputIds } from '../constants';
-export const createStyleForDefault = ({ initValue, target }: StyleModeType<Data>) => ({
+export const createStyleForDefault = ({ initValue, target }: StyleModeType<any>) => ({
   title: '标签',
   initValue,
   options: [
@@ -23,7 +21,7 @@ export const createFontStyleForActive = ({ initValue, target, title = '标签' }
   target,
 });
 
-export const createStyleForActive = ({ initValue, target, title }: StyleModeType<Data>) => ({
+export const createStyleForActive = ({ initValue, target, title }: StyleModeType<any>) => ({
   title,
   initValue,
   options: [
@@ -47,7 +45,7 @@ export const createStyleForActive = ({ initValue, target, title }: StyleModeType
 //     `.ant-tabs .ant-tabs-nav .ant-tabs-ink-bar${getFilterSelector(id)}`
 // });
 
-export const setDynamicTabsIO = (props: EditorResult<Data>) => {
+export const setDynamicTabsIO = (props: EditorResult<any>) => {
   const schema = {
     type: 'array',
     items: {

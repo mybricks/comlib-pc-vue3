@@ -21,7 +21,7 @@ onMounted(() => {
 
 const handleClick = (tab: any, event: Event) => {
   console.log(tab, event);
-  props.outputs["tabClick"]({
+  props.outputs["tabClick"]?.({
     name:tab.props.name,
     index:tab.index,
   })
