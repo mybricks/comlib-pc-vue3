@@ -2,7 +2,9 @@
   "comAry": [
     "./src/button/com.json",
     "./src/list/com.json",
-    "./src/tabs/com.json"
+    "./src/tabs/com.json",
+    "./src/card/com.json",
+    "./src/tree/com.json"
   ],
   "domain": "",
   "componentType": "PC",

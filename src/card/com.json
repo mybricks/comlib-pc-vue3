@@ -1,0 +1,24 @@
+{
+  "title": "卡片",
+  "namespace": "your-team.lib.card",
+  "version": "1.0.0",
+  "description": "卡片",
+  "author": "MyBricks team",
+  "author_name": "板砖团队",
+  "data": "./data.json",
+  "icon":"./icon.svg",
+  "runtime": "./runtime.vue",
+  "editors": "./editors.tsx",
+  "inputs": [
+
+  ],
+  "outputs": [
+
+  ],
+  "slots": [
+    {
+      "id": "body",
+      "title": "卡片内容容器"
+    }
+  ]
+}
