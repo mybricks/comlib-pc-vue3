@@ -1,5 +1,5 @@
 <template>
-  <Button class="button" @click="onClick" @doubleClick="onDoubleClick">{{ props.data.text }}</Button>
+  <Button class="button" @click="onClick">{{ props.data.text }}</Button>
 </template>
 <script setup>
 
@@ -17,11 +17,6 @@ const onClick = () => {
   }
 }
 
-const onDoubleClick = () => {
-  if (props.env.runtime) { // 运行态下才触发输出
-    props.outputs['dblClick'](props.data.text);
-  }
-}
 
 onMounted(() => {
 
@@ -40,15 +35,7 @@ onMounted(() => {
   padding: 6px 16px;
   border-radius: 4px;
   border: 1px solid #1677ff;
-}
-
-.hotarea {
   width: 100%;
   height: 100%;
-
-}
-
-.hotarea.edit {
-  border: 1px dashed #ccc;
 }
 </style>

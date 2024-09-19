@@ -6,7 +6,8 @@
   "scripts": {},
   "license": "ISC",
   "dependencies": {
-    "ant-design-vue": "4.x"
+    "ant-design-vue": "4.x",
+    "antd": "^5.20.6"
   },
   "devDependencies": {
     "vue": "^3.4.19",
