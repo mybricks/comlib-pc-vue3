@@ -1,25 +1,5 @@
-import { Data, InputIds, OutputIds, SlotIds } from '../constants';
-import TabEditor from './tab';
-import { createItem, addEventIO } from './common';
-/**
- * @description 根据 layout 编辑器返回值，设置插槽布局类型
- * 
- */
-const setSlotLayout = (slot, val) => {
-  if (!slot) return;
-
-  if (val.position === 'smart') {
-    slot.setLayout('smart');
-  } else if (val.position === 'absolute') {
-    slot.setLayout(val.position);
-  } else if (val.display === 'flex') {
-    if (val.flexDirection === 'row') {
-      slot.setLayout('flex-row');
-    } else if (val.flexDirection === 'column') {
-      slot.setLayout('flex-column');
-    }
-  }
-};
+import { Data, InputIds, OutputIds, SlotIds } from './constants';
+import { createItem, updateIO, getFocusTab, removeIOAndSlot } from './common';
 
 export default {
   ':slot': {},
@@ -33,31 +13,6 @@ export default {
     items({ }: EditorResult<Data>, cate1, cate2, cate3) {
       cate1.title = '常规';
       cate1.items = [
-        {
-          title: '插槽布局',
-          type: 'layout',
-          description: '配置插槽内部的布局类型',
-          ifVisible({ data }: EditorResult<Data>) {
-            return !data.hideSlots;
-          },
-          value: {
-            get({ data }: EditorResult<Data>) {
-              return data.slotStyle;
-            },
-            set({ slots, data }: EditorResult<Data>, val: any) {
-              if (!data.slotStyle) {
-                data.slotStyle = {};
-              }
-
-              data.slotStyle = val
-
-              data.tabList.forEach((item) => {
-                const slotInstance = slots.get(item.id);
-                setSlotLayout(slotInstance, val);
-              });
-            }
-          }
-        },
         {
           title: '添加标签页',
           type: 'Button',
@@ -88,10 +43,6 @@ export default {
                   }
                 ]
               });
-              const slotInstance = slots.get(newItem.id);
-              setSlotLayout(slotInstance, data.slotStyle);
-              // addEventIO(output, newItem, env);
-              // console.log("data.tabList",data.tabList,"newItem",newItem)
               data.tabList.push(newItem);
             }
           }
@@ -136,32 +87,6 @@ export default {
         {
           title: '事件',
           items: [
-            {
-              title: '标签页新增',
-              type: '_Event',
-              description: '新增标签页时触发【标签页新增】输出项事件',
-              ifVisible({ data }: EditorResult<Data>) {
-                return data.type === 'editable-card';
-              },
-              options() {
-                return {
-                  outputId: OutputIds.AddTab
-                };
-              }
-            },
-            {
-              title: '标签页删除',
-              type: '_Event',
-              description: '删除标签页时触发【标签页删除】输出项事件',
-              ifVisible({ data }: EditorResult<Data>) {
-                return data.type === 'editable-card';
-              },
-              options() {
-                return {
-                  outputId: OutputIds.RemoveTab
-                };
-              }
-            },
             {
               title: '标签页点击',
               type: '_Event',
@@ -209,5 +134,105 @@ export default {
       }
     ]
   },
-  ...TabEditor
+  '.el-tabs__item': {
+    title: '标签',
+    items: (props: EditorResult<any>, cate1, cate2, cate3) => {
+      if (!props.focusArea) return;
+      const item = getFocusTab(props);
+      cate1.title = '常规';
+      cate1.items = [
+        {
+          title: '名称',
+          type: 'Text',
+          description: '配置标签默认名称',
+          options: {
+            locale: true
+          },
+          value: {
+            get({ }: EditorResult<any>) {
+              return item?.name;
+            },
+            set({ input, output, slots, env }: EditorResult<any>, title: string) {
+              item.name = title;
+              updateIO({ input, output, item, slots, env });
+            }
+          }
+        },
+        {
+          title: '操作',
+          items: [
+            {
+              title: '前移',
+              type: 'Button',
+              description: '向前移动该标签页',
+              value: {
+                get({ focusArea }: EditorResult<any>) {
+                  return focusArea.index;
+                },
+                set({ data, focusArea }: EditorResult<any>) {
+                  const { index } = focusArea;
+                  const { tabList } = data;
+                  if (index === 0) return;
+                  [tabList[index - 1], tabList[index]] = [tabList[index], tabList[index - 1]];
+                }
+              }
+            },
+            {
+              title: '后移',
+              type: 'Button',
+              description: '向后移动该标签页',
+              value: {
+                get({ focusArea }: EditorResult<any>) {
+                  return focusArea.index;
+                },
+                set({ data, focusArea }: EditorResult<any>) {
+                  const { index } = focusArea;
+                  const { tabList } = data;
+                  if (index === tabList.length - 1) return;
+                  [tabList[index], tabList[index + 1]] = [tabList[index + 1], tabList[index]];
+                }
+              }
+            },
+            {
+              title: '删除',
+              type: 'Button',
+              description: '删除该标签页',
+              value: {
+                get({ focusArea }: EditorResult<any>) {
+                  return focusArea.index;
+                },
+                set(props: EditorResult<any>) {
+                  const { data, focusArea } = props;
+                  if (data.tabList.length > 1) {
+                    const item = data.tabList[focusArea.index];
+                    if (item) {
+                      removeIOAndSlot(props, item);
+                    }
+                    data.tabList.splice(focusArea.index, 1);
+                    data.defaultActiveKey = data.tabList[0].key;
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ];
+    },
+    '@dblclick': {
+      type: 'text',
+      value: {
+        get(props: EditorResult<any>) {
+          const item = getFocusTab(props);
+          console.log("双击聚焦的item",item);
+          return item?.name;
+        },
+        set(props: EditorResult<any>, title: string) {
+          const item = getFocusTab(props);
+          item.name = title;
+          const { input, output, slots, env } = props;
+          updateIO({ input, output, item, slots, env });
+        }
+      }
+    }
+  }
 };

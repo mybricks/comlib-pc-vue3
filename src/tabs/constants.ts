@@ -1,4 +1,4 @@
-import { TabsProps } from "antd";
+
 
 /**
  * 标签页配置项
@@ -62,7 +62,7 @@ export interface Data {
   /** @description 1.0.14 隐藏时渲染 */
   forceRender?: boolean;
   /** @description 1.0.15 尺寸 */
-  size?: TabsProps['size'];
+  size?: any;
   /** @description v1.0.19 插槽样式 */
   slotStyle: {
     position?: string,
