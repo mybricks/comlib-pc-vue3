@@ -1,25 +1,12 @@
 {
   "comAry": [
     "./src/button/com.json",
-    "./src/list/com.json",
-    "./src/tabs/com.json",
     "./src/card/com.json",
     "./src/tree/com.json"
   ],
   "domain": "",
   "componentType": "PC",
-  "title": "my_comlib",
   "namespace": "my_comlib",
   "tags": "vue3",
-  "externals": [
-    {
-      "name": "element-plus",
-      "library": "ElementPlus",
-      "urls": [
-        "//cdn.jsdelivr.net/npm/element-plus/dist/index.css",
-        "//cdn.jsdelivr.net/npm/element-plus",
-        "//cdn.jsdelivr.net/npm/element-plus/dist/locale/zh-cn"
-      ]
-    }
-  ]
+  "externals": []
 }

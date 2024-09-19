@@ -1,5 +1,5 @@
 <template>
-  <Card :title="props.data.title" style="height: 100%">
+  <Card class="mybricks-card" :title="123123"  @click="onClick">
     <div class="slotStyle">
       <slot name="body"></slot>
     </div>
@@ -15,10 +15,9 @@ const props = defineProps(['data', 'inputs', 'outputs', 'slots', 'env', 'style']
 
 const onClick = () => {
   if (props.env.runtime) { // 运行态下才触发输出
-    props.outputs['click'](props.data.text);
+    props.outputs?.['click'](props.data.title);
   }
 }
-
 
 onMounted(() => {
 
@@ -26,6 +25,18 @@ onMounted(() => {
 
 </script>
 <style scoped>
+.mybricks-card {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.ant-card-body {
+  flex: 1
+}
+
 .slotStyle {
   height: 100%;
 }

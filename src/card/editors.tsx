@@ -2,10 +2,10 @@ const getFilterSelector = (id: string) => `:not(#{id} *[data-isslot="1"] *)`;
 export default {
   ':slot': {},
   "@init"({ style }) {
-    style.height = 200;
+    style.height = 'fit-content';
   },
   "@resize": {
-    options: ["width", "height"],
+    options: ["width"],
   },
   ":root": {
     style: [
@@ -52,7 +52,7 @@ export default {
         description: '是否显示卡片上半部的标题区',
         value: {
           get({ data }) {
-            return data.showTitle || true;
+            return data.showTitle ?? true;
           },
           set({ data }, value) {
             data.showTitle = value;

@@ -1,5 +1,5 @@
 <template>
-  <Button @click="onClick">{{ props.data.text }}</Button>
+  <Button :type="props.data.type" :size="props.data.size" @click="onClick">{{ props.data.text }}</Button>
 </template>
 <script setup>
 

@@ -1,6 +1,5 @@
 <template>
   <div class="listRoot">
-    <ElButton>12312</ElButton>
     <template v-if="props.data?.layout === 'vertical'">
       <div v-for="(row, index) in listData">
         <slot name="item" :inputValues="{ itemData: row, index: index }" :key="`row_${index}`"></slot>
@@ -17,7 +16,6 @@
 </template>
 
 <script setup>
-import { ElButton } from 'element-plus'
 import { ref, reactive, computed, onMounted } from 'vue';
 
 defineOptions({
