@@ -5,6 +5,7 @@
 
 import { ref, reactive, computed, onMounted } from 'vue';
 import { Button } from 'ant-design-vue'
+import 'ant-design-vue/lib/button/style'
 defineOptions({
   inheritAttrs: false,
 });
