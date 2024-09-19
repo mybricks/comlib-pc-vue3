@@ -1,43 +1,31 @@
 <template>
-  <div v-if="!data?.asHotarea" class="button" @click="onClick" @dblClick="onDoubleClick">{{ data?.text }}</div>
-  <div v-else :class="hotareaCx" @click="onClick" @dblClick="onDoubleClick"></div>
+  <Button class="button" @click="onClick" @doubleClick="onDoubleClick">{{ props.data.text }}</Button>
 </template>
-<script>
+<script setup>
 
-export default {
-  props: ["inputs", "env", "data"], 
-  data() {
-    return {
-      list: []
-    }
-  },
-  created() {
-    // 监听输入事件
-    this.inputs['setText']((value) => {
-      this.data.text = value;
-    });
-  },
-  computed: {
-    hotareaCx() {
-      return {
-        'hotarea': true,
-        'edit': !!this.env.edit // 编辑态下显示热区
-      }
-    }
-  },
-  methods: {
-    onClick() {
-      if (this.env.runtime) { // 运行态下才触发输出
-        this.outputs['click'](this.data.text);
-      }
-    },
-    onDoubleClick() {
-      if (this.env.runtime) {
-        this.outputs['dblClick'](this.data.text);
-      }
-    }
+import { ref, reactive, computed, onMounted } from 'vue';
+import { Button } from 'ant-design-vue'
+defineOptions({
+  inheritAttrs: false,
+});
+
+const props = defineProps(['data', 'inputs', 'outputs', 'slots', 'env', 'style'])
+
+const onClick = () => {
+  if (props.env.runtime) { // 运行态下才触发输出
+    props.outputs['click'](props.data.text);
   }
 }
+
+const onDoubleClick = () => {
+  if (props.env.runtime) { // 运行态下才触发输出
+    props.outputs['dblClick'](props.data.text);
+  }
+}
+
+onMounted(() => {
+
+});
 
 </script>
 <style scoped>
@@ -57,7 +45,7 @@ export default {
 .hotarea {
   width: 100%;
   height: 100%;
-  
+
 }
 
 .hotarea.edit {

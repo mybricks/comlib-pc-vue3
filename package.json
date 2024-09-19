@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {},
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "ant-design-vue": "4.x"
+  },
   "devDependencies": {
     "vue": "^3.4.19",
     "vue-loader": "^17.4.2",

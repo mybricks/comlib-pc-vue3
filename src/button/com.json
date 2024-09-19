@@ -6,6 +6,7 @@
   "author": "MyBricks team",
   "author_name": "板砖团队",
   "data": "./data.json",
+  "icon":"./icon.svg",
   "runtime": "./runtime.vue",
   "editors": "./editors.tsx",
   "inputs": [
