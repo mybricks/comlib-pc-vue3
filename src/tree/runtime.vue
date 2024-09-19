@@ -1,5 +1,9 @@
 <template>
-  <Tree></Tree>
+  <Tree :tree-data="treeData">
+    <template v-if="!!icon">
+        <div>tu</div>
+      </template>
+  </Tree>
 </template>
 <script setup>
 
@@ -9,10 +13,40 @@ import 'ant-design-vue/lib/tree/style'
 
 const props = defineProps(['data', 'inputs', 'outputs', 'slots', 'env', 'style'])
 
+const placeholderTreeData = [
+  {
+    title: '0(搭建态占位数据)',
+    key: '0',
+    children: [
+      {
+        title: '0-0',
+        key: '0-0',
+        children: [
+          {
+            title: '0-0-1',
+            key: '0-0-1',
+          },
+          {
+            title: '0-0-2',
+            key: '0-0-2',
+          },
+        ],
+      },
+      {
+        title: '0-1',
+        key: '0-1',
+      },
+    ],
+  }
+]
+const treeData = ref(props?.env?.edit ? placeholderTreeData : [])
+
 
 
 onMounted(() => {
-
+  props.inputs['treeData'](ds => {
+    treeData.value = ds
+  })
 });
 
 </script>

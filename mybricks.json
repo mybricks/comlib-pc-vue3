@@ -1,5 +1,6 @@
 {
   "comAry": [
+    "./src/_muilt-inputJs/com.json",
     "./src/button/com.json",
     "./src/list/com.json",
     "./src/tabs/com.json",

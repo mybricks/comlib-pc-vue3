@@ -10,6 +10,43 @@
   "runtime": "./runtime.vue",
   "editors": "./editors.tsx",
   "inputs": [
+    {
+      "id": "treeData",
+      "title": "输入数据",
+      "desc": "树组件的节点数据，确保key唯一",
+      "schema": {
+        "title": "树组件数据",
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "title": "标题",
+              "description": "树节点标题",
+              "type": "string"
+            },
+            "key": {
+              "title": "字段名",
+              "description": "树节点唯一的key",
+              "type": "string"
+            },
+            "icon": {
+              "title": "前置图标",
+              "description": "树节点前置的图标",
+              "type": "string"
+            },
+            "children": {
+              "title": "子项",
+              "type": "array",
+              "description": "节点子项的数据",
+              "items": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    }
   ],
   "outputs": [
   ]
