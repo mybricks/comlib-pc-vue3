@@ -1,0 +1,28 @@
+{
+  "tabList": [
+    {
+      "name": "标签页1",
+      "key": "tab1",
+      "id": "tab1",
+      "infoType": "text",
+      "size": "default",
+      "offset": [0, 0],
+      "status": "error",
+      "showZero": false
+    },
+    {
+      "name": "标签页2",
+      "key": "tab2",
+      "id": "tab2",
+      "infoType": "text",
+      "size": "default",
+      "offset": [0, 0],
+      "status": "error",
+      "showZero": false
+    }
+  ],
+  "slotStyle": {},
+  "defaultActiveKey": "tab1",
+  "type": "card",
+  "tabPosition": "top"
+}

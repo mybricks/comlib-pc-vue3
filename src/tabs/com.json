@@ -1,0 +1,268 @@
+{
+  "title": "标签页",
+  "namespace": "mybricks.normal-pc.tabs-vue",
+  "version": "1.0.0",
+  "description": "标签页组件",
+  "author": "MyBricks",
+  "author_name": "MyBricks",
+  "icon": "./icon.svg",
+  "data": "./data.json",
+  "runtime": "./runtime.vue",
+  "editors": "./editor/index.ts",
+  "target": {
+    "toReact": "./toReact.ts"
+  },
+  "inputs": [
+    {
+      "id": "previous",
+      "title": "上一页",
+      "schema": {
+        "type": "any"
+      },
+      "rels": ["previousComplete"],
+      "desc": "标签页上一页"
+    },
+    {
+      "id": "next",
+      "title": "下一页",
+      "schema": {
+        "type": "any"
+      },
+      "rels": ["nextComplete"],
+      "desc": "标签页下一页"
+    },
+    {
+      "id": "active",
+      "title": "激活tab项",
+      "schema": {
+        "type": "number"
+      },
+      "rels": ["activeComplete"],
+      "desc": "标签页下标，从0开始计数"
+    },
+    {
+      "id": "outActiveTab",
+      "title": "获取激活tab项",
+      "rels": ["outActiveTab"],
+      "schema": {
+        "type": "any"
+      },
+      "desc": "获取当前显示的标签页信息"
+    },
+    {
+      "id": "getTabs",
+      "title": "获取标签页列表",
+      "schema": {
+        "type": "any"
+      },
+      "rels": ["getTabsDone"],
+      "desc": "获取当前所有的的标签页信息列表"
+    }
+  ],
+  "outputs": [
+    {
+      "id": "tabClick",
+      "title": "标签页点击",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "标签页标题",
+            "type": "string",
+            "description": "点击的标签页的标题"
+          },
+          "index": {
+            "title": "下标",
+            "type": "number",
+            "description": "点击的标签页的下标index"
+          }
+        }
+      },
+      "desc": "输出点击的标签页信息"
+    },
+    {
+      "id": "outActiveTab",
+      "title": "激活tab项输出",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "标签页id",
+            "type": "string",
+            "description": "点击的标签页的id"
+          },
+          "name": {
+            "title": "标签页标题",
+            "type": "string",
+            "description": "点击的标签页的标题"
+          },
+          "key": {
+            "title": "标签页key",
+            "type": "string",
+            "description": "点击的标签页的key"
+          },
+          "index": {
+            "title": "下标",
+            "type": "number",
+            "description": "点击的标签页的下标index"
+          }
+        }
+      },
+      "desc": "输出激活的标签页信息，关联输入项【获取激活tab项】"
+    },
+
+    {
+      "id": "addTab",
+      "title": "标签页新增",
+      "schema": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "title": "标签页id",
+              "type": "string",
+              "description": "标签页的id"
+            },
+            "name": {
+              "title": "标签页标题",
+              "type": "string",
+              "description": "标签页的标题"
+            },
+            "key": {
+              "title": "标签页key",
+              "type": "string",
+              "description": "标签页的key"
+            },
+            "index": {
+              "title": "下标",
+              "type": "number",
+              "description": "标签页的下标index"
+            },
+            "closable": {
+              "title": "可关闭",
+              "type": "boolean",
+              "description": "标签页是否可关闭"
+            }
+          }
+        }
+      },
+      "desc": "标签页新增"
+    },
+    {
+      "id": "removeTab",
+      "title": "标签页删除",
+      "schema": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "title": "标签页id",
+              "type": "string",
+              "description": "标签页的id"
+            },
+            "name": {
+              "title": "标签页标题",
+              "type": "string",
+              "description": "标签页的标题"
+            },
+            "key": {
+              "title": "标签页key",
+              "type": "string",
+              "description": "标签页的key"
+            },
+            "index": {
+              "title": "下标",
+              "type": "number",
+              "description": "标签页的下标index"
+            },
+            "closable": {
+              "title": "可关闭",
+              "type": "boolean",
+              "description": "标签页是否可关闭"
+            }
+          }
+        }
+      },
+      "desc": "标签页删除"
+    },
+    {
+      "id": "getTabsDone",
+      "title": "标签页数据",
+      "schema": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "title": "标签页id",
+              "type": "string",
+              "description": "标签页id"
+            },
+            "name": {
+              "title": "标签页标题",
+              "type": "string",
+              "description": "标签页标题"
+            },
+            "key": {
+              "title": "标签页key",
+              "type": "string",
+              "description": "标签页key"
+            }
+          }
+        }
+      },
+      "desc": "输出标签页数据，关联输入项【获取标签页列表】"
+    }
+  ],
+  "slots": [
+    {
+      "id": "tab1",
+      "title": "标签页1",
+      "type": "scope",
+      "description": "tab项作用域插槽，有对应项内容和序号的输入",
+      "inputs": [
+        {
+          "id": "itemData",
+          "title": "当前项",
+          "desc": "当前项展示内容",
+          "schema": {
+            "type": "any"
+          }
+        },
+        {
+          "id": "index",
+          "title": "当前项序号",
+          "desc": "当前项展示的序号",
+          "schema": {
+            "type": "number"
+          }
+        }
+      ]
+    },{
+      "id": "tab2",
+      "title": "标签页2",
+      "type": "scope",
+      "description": "tab项作用域插槽，有对应项内容和序号的输入",
+      "inputs": [
+        {
+          "id": "itemData",
+          "title": "当前项",
+          "desc": "当前项展示内容",
+          "schema": {
+            "type": "any"
+          }
+        },
+        {
+          "id": "index",
+          "title": "当前项序号",
+          "desc": "当前项展示的序号",
+          "schema": {
+            "type": "number"
+          }
+        }
+      ]
+    }
+  ]
+}
