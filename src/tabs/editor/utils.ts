@@ -1,5 +1,5 @@
 import { Data } from '../constants';
-import { getFilterSelector } from '../../utils/cssSelector';
+// import { getFilterSelector } from '../../utils/cssSelector';
 import { InputIds, OutputIds } from '../constants';
 export const createStyleForDefault = ({ initValue, target }: StyleModeType<Data>) => ({
   title: '标签',
@@ -33,19 +33,19 @@ export const createStyleForActive = ({ initValue, target, title }: StyleModeType
   target,
 });
 
-export const createStyleForBar = ({}: StyleModeType<Data> = {}) => ({
-  title: '选中条',
-  ifVisible({ data }: EditorResult<Data>) {
-    return data.type === 'line';
-  },
-  options: [
-    'border',
-    { type: 'background', config: { disableBackgroundImage: true } },
-    { type: 'size', config: { disableWidth: true } }
-  ],
-  target: ({ id }: EditorResult<Data>) =>
-    `.ant-tabs .ant-tabs-nav .ant-tabs-ink-bar${getFilterSelector(id)}`
-});
+// export const createStyleForBar = ({}: StyleModeType<Data> = {}) => ({
+//   title: '选中条',
+//   ifVisible({ data }: EditorResult<Data>) {
+//     return data.type === 'line';
+//   },
+//   options: [
+//     'border',
+//     { type: 'background', config: { disableBackgroundImage: true } },
+//     { type: 'size', config: { disableWidth: true } }
+//   ],
+//   target: ({ id }: EditorResult<Data>) =>
+//     `.ant-tabs .ant-tabs-nav .ant-tabs-ink-bar${getFilterSelector(id)}`
+// });
 
 export const setDynamicTabsIO = (props: EditorResult<Data>) => {
   const schema = {

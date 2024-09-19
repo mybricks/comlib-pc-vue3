@@ -1,6 +1,6 @@
 <template>
     <el-tabs v-model="activeKey" :type="props.data.type" :tabPosition="props.data.tabPosition" class="demo-tabs" @tab-click="handleClick">
-      <el-tab-pane class="slotStyle" v-for="(tab, index) in props.data.tabList" :label="tab.name" :name="tab.id">
+      <el-tab-pane class="slotStyle" v-for="(tab, index) in props.data.tabList" :label="tab.name" :name="tab.id" :key="tab.key">
         <slot :name="tab.id" :inputValues="{ itemData: tab, index: index }">
         </slot>
       </el-tab-pane>
@@ -16,6 +16,7 @@ const activeKey = ref(props.data.defaultActiveKey);
 
 
 onMounted(() => {
+  console.log("props.data.tabList",props.data.tabList)
 });
 
 const handleClick = (tab: any, event: Event) => {

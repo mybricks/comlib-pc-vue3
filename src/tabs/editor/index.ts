@@ -1,7 +1,25 @@
 import { Data, InputIds, OutputIds, SlotIds } from '../constants';
 import TabEditor from './tab';
 import { createItem, addEventIO } from './common';
-import { setSlotLayout } from '../../utils/editorTools'
+/**
+ * @description 根据 layout 编辑器返回值，设置插槽布局类型
+ * 
+ */
+const setSlotLayout = (slot, val) => {
+  if (!slot) return;
+
+  if (val.position === 'smart') {
+    slot.setLayout('smart');
+  } else if (val.position === 'absolute') {
+    slot.setLayout(val.position);
+  } else if (val.display === 'flex') {
+    if (val.flexDirection === 'row') {
+      slot.setLayout('flex-row');
+    } else if (val.flexDirection === 'column') {
+      slot.setLayout('flex-column');
+    }
+  }
+};
 
 export default {
   ':slot': {},
@@ -49,12 +67,31 @@ export default {
               const newItem = createItem(data);
               slots.add({
                 id: newItem.id,
-                title: newItem.name
+                title: newItem.name,
+                type: "scope",
+                inputs: [
+                  {
+                    "id": "itemData",
+                    "title": "当前项",
+                    "desc": "当前项展示内容",
+                    "schema": {
+                      "type": "any"
+                    }
+                  },
+                  {
+                    "id": "index",
+                    "title": "当前项序号",
+                    "desc": "当前项展示的序号",
+                    "schema": {
+                      "type": "number"
+                    }
+                  }
+                ]
               });
               const slotInstance = slots.get(newItem.id);
               setSlotLayout(slotInstance, data.slotStyle);
-              addEventIO(output, newItem, env);
-              console.log("data.tabList",data.tabList,"newItem",newItem)
+              // addEventIO(output, newItem, env);
+              // console.log("data.tabList",data.tabList,"newItem",newItem)
               data.tabList.push(newItem);
             }
           }

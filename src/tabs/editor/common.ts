@@ -1,7 +1,5 @@
-import { Data } from '../../domain-form/constants';
 import { uuid } from '../../utils/index';
-import { TabItem } from '../constants';
-export const createItem = (data): TabItem => {
+export const createItem = (data): any => {
   const key = uuid();
   return {
     id: key,
@@ -10,7 +8,7 @@ export const createItem = (data): TabItem => {
   };
 };
 
-export const addEventIO = (output, item: TabItem, env) => {
+export const addEventIO = (output, item: any, env) => {
   const { id, key, name: originName } = item;
   const name = env.i18n(originName);
   output.add(`${id}_into`, `${name}显示`, { type: 'any' });
@@ -26,7 +24,7 @@ export const updateIO = ({
 }: {
   input?: any;
   output?: any;
-  item: TabItem;
+  item: any;
   slots;
   env;
 }) => {
@@ -38,7 +36,7 @@ export const updateIO = ({
   slots.get(item.key) && slots.get(item.key)!.setTitle(`${name}`);
 };
 
-export const removeIOAndSlot = (props: EditorResult<Data>, item: TabItem) => {
+export const removeIOAndSlot = (props: EditorResult<any>, item: any) => {
   const { input, output, slots } = props;
   const { key, id } = item;
   slots.remove(id);
@@ -49,7 +47,7 @@ export const removeIOAndSlot = (props: EditorResult<Data>, item: TabItem) => {
   }
 };
 
-export const getFocusTab = (props: EditorResult<Data>) => {
+export const getFocusTab = (props: EditorResult<any>) => {
   const { data, focusArea } = props;
   if (!focusArea) return {};
   const { index } = focusArea;
