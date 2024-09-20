@@ -1,5 +1,5 @@
 {
-  "title": "卡片",
+  "cardTitle": "卡片的标题",
   "showTitle": true,
   "height": "80px"
 }

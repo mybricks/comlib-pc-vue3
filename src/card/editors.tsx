@@ -39,10 +39,10 @@ export default {
         },
         value: {
           get({ data }) {
-            return data.title;
+            return data.cardTitle;
           },
           set({ data }, value) {
-            data.title = value;
+            data.cardTitle = value;
           }
         }
       },
@@ -61,4 +61,17 @@ export default {
       },
     ],
   },
+  '.ant-card-head .ant-card-head-wrapper .ant-card-head-title': {
+    '@dblclick': {
+      type: 'text',
+      value: {
+        get({ data }) {
+          return data.cardTitle;
+        },
+        set({ data }, value) {
+          data.cardTitle = value;
+        }
+      }
+    }
+  }
 };

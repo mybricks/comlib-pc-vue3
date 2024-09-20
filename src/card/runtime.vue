@@ -1,9 +1,9 @@
 <template>
-  <Card class="mybricks-card" :title="123123"  @click="onClick">
-    <div class="slotStyle">
+  <div>
+    <Card class="mybricks-card" :title="props.data.cardTitle">
       <slot name="body"></slot>
-    </div>
-  </Card>
+    </Card>
+  </div>
 </template>
 <script setup>
 
@@ -12,12 +12,6 @@ import { Card } from 'ant-design-vue'
 import 'ant-design-vue/lib/card/style'
 
 const props = defineProps(['data', 'inputs', 'outputs', 'slots', 'env', 'style'])
-
-const onClick = () => {
-  if (props.env.runtime) { // 运行态下才触发输出
-    props.outputs?.['click'](props.data.title);
-  }
-}
 
 onMounted(() => {
 
