@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Card class="mybricks-card" :title="props.data.cardTitle">
+    <Card class="mybricks-card" :title="props.data.showTitle ? props.data.cardTitle : ''">
       <slot name="body"></slot>
     </Card>
   </div>
