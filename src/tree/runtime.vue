@@ -1,8 +1,10 @@
 <template>
-  <Tree :tree-data="treeData">
-    <template v-if="!!icon">
-        <div>tu</div>
-      </template>
+  <Tree :tree-data="treeData" :defaultExpandAll="true" :show-icon="true">
+    <template v-slot:icon="{ icon, selected }">
+      <!-- <template v-if="icon">
+        <img :src="icon" alt="" style="width: 16px; height: 16px;">
+      </template> -->
+    </template>
   </Tree>
 </template>
 <script setup>
@@ -10,6 +12,7 @@
 import { ref, reactive, computed, onMounted } from 'vue';
 import { Tree } from 'ant-design-vue'
 import 'ant-design-vue/lib/tree/style'
+import { CarryOutOutlined, SmileTwoTone } from '@ant-design/icons-vue'
 
 const props = defineProps(['data', 'inputs', 'outputs', 'slots', 'env', 'style'])
 
