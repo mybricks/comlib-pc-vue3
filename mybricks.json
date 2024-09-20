@@ -3,7 +3,8 @@
     "./src/_muilt-inputJs/com.json",
     "./src/button/com.json",
     "./src/card/com.json",
-    "./src/tree/com.json"
+    "./src/tree/com.json",
+    "./src/list/com.json"
   ],
   "domain": "",
   "componentType": "PC",
