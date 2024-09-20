@@ -1,9 +1,11 @@
 <template>
-  <Tree :tree-data="treeData" :defaultExpandAll="true" :show-icon="true">
-    <template v-slot:icon="{ icon, selected }">
-      <!-- <template v-if="icon">
-        <img :src="icon" alt="" style="width: 16px; height: 16px;">
-      </template> -->
+  <Tree :tree-data="treeData" :defaultExpandAll="true" show-icon>
+    <template #icon="item">
+      <template v-if="item.iconUrl">
+        <div class="icon">
+          <img :src="item.iconUrl" />
+        </div>
+      </template>
     </template>
   </Tree>
 </template>
@@ -42,35 +44,41 @@ const placeholderTreeData = [
     ],
   }
 ]
+
 const treeData = ref(props?.env?.edit ? placeholderTreeData : [])
-
-
 
 onMounted(() => {
   props.inputs['treeData'](ds => {
-    treeData.value = ds
+    if (!Array.isArray(ds)) {
+      ds = [];
+    }
+
+    ds = ds.map(item => {
+      if (item.icon) {
+        item.iconUrl = item.icon;
+        delete item.icon;
+      }
+
+      return item;
+    })
+
+    treeData.value = ds;
   })
 });
 
 </script>
-<style scoped>
-:global(.ant-btn) {
-  width: 100%;
-  height: 100%;
-}
-
-/* .button {
+<style scoped lang="less">
+.icon {
+  width: 24px;
+  height: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #1677ff;
-  color: #ffffff;
-  font-size: 14px;
-  font-weight: 500;
-  padding: 6px 16px;
-  border-radius: 4px;
-  border: 1px solid #1677ff;
-  width: 100%;
-  height: 100%;
-} */
+
+  img {
+    display: block;
+    width: 16px;
+    height: 16px;
+  }
+}
 </style>
