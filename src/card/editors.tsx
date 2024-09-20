@@ -72,6 +72,27 @@ export default {
           data.cardTitle = value;
         }
       }
-    }
+    },
+    items:[
+      {
+        title: '标题内容',
+        type: 'Text',
+        description: '卡片的标题内容',
+        options: {
+          locale: true
+        },
+        ifVisible({ data }) {
+          return data.showTitle;
+        },
+        value: {
+          get({ data }) {
+            return data.cardTitle;
+          },
+          set({ data }, value) {
+            data.cardTitle = value;
+          }
+        }
+      },
+    ]
   }
 };
