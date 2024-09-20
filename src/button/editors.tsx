@@ -1,8 +1,8 @@
-import { SizeEnum, TypeEnum } from './constants'
+import { SizeEnum, TypeEnum } from "./constants";
 export default {
   "@init"({ style }) {
-    style.width = 'fit-content';
-    style.height = "auto";
+    style.width = 72;
+    style.height = 32;
   },
   "@resize": {
     options: ["width", "height"],
@@ -10,13 +10,13 @@ export default {
   ":root": {
     style: [
       {
-        title: '尺寸',
-        type: 'Select',
+        title: "尺寸",
+        type: "Select",
         options() {
           return [
-            { value: SizeEnum.Large, label: '大' },
-            { value: SizeEnum.Middle, label: '中等' },
-            { value: SizeEnum.Small, label: '小' }
+            { value: SizeEnum.Large, label: "大" },
+            { value: SizeEnum.Middle, label: "中等" },
+            { value: SizeEnum.Small, label: "小" },
           ];
         },
         value: {
@@ -25,20 +25,20 @@ export default {
           },
           set({ data, focusArea }: EditorResult<any>, value: SizeEnum) {
             data.size = value;
-          }
-        }
+          },
+        },
       },
       {
-        title: '风格',
-        type: 'Select',
+        title: "风格",
+        type: "Select",
         options() {
           return [
-            { value: TypeEnum.Primary, label: '主按钮' },
-            { value: TypeEnum.Default, label: '次按钮' },
-            { value: TypeEnum.Dashed, label: '虚线按钮' },
+            { value: TypeEnum.Primary, label: "主按钮" },
+            { value: TypeEnum.Default, label: "次按钮" },
+            { value: TypeEnum.Dashed, label: "虚线按钮" },
             // { value: TypeEnum.Danger, label: '危险按钮' },
-            { value: TypeEnum.Link, label: '链接按钮' },
-            { value: TypeEnum.Text, label: '文字按钮' }
+            { value: TypeEnum.Link, label: "链接按钮" },
+            { value: TypeEnum.Text, label: "文字按钮" },
           ];
         },
         value: {
@@ -47,11 +47,11 @@ export default {
           },
           set({ data, focusArea }: EditorResult<any>, value: TypeEnum) {
             data.type = value;
-          }
-        }
+          },
+        },
       },
       {
-        title:"按钮样式",
+        title: "按钮样式",
         options: ["font", "padding", "border", "background", "boxShadow"],
         target: ".ant-btn",
       },
@@ -80,7 +80,7 @@ export default {
         options: {
           outputId: "click",
         },
-      }
+      },
     ],
   },
 };

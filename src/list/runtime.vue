@@ -18,9 +18,10 @@ const props = defineProps(['data', 'inputs', 'outputs', 'slots', 'env', 'style']
 const listData = ref(props?.env?.edit ? [1, 2, 3] : []);
 
 onMounted(() => {
-  props.inputs['dataSource'](ds => {
+  props.inputs['dataSource']((ds,relOutput) => {
     props.data.dataSource = ds
     listData.value = ds
+    relOutput['setDataSourceDone'](ds)
   })
 });
 
