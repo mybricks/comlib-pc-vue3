@@ -1,15 +1,17 @@
 <template>
-  <div>
     <Card class="mybricks-card" :title="props.data.showTitle ? props.data.cardTitle : ''">
       <slot name="body"></slot>
     </Card>
-  </div>
 </template>
 <script setup>
 
 import { ref, reactive, computed, onMounted } from 'vue';
 import { Card } from 'ant-design-vue'
 import 'ant-design-vue/lib/card/style'
+
+defineOptions({
+  inheritAttrs: false,
+});
 
 const props = defineProps(['data', 'inputs', 'outputs', 'slots', 'env', 'style'])
 
