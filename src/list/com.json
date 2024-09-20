@@ -1,7 +1,5 @@
 {
   "title": "列表容器",
-  "enable": true,
-  "visibility": true,
   "namespace": "mybricks.normal-pc.list-vue",
   "version": "1.0.36",
   "description": "最基础的列表展示，可承载文字、列表、图片、段落，常用于后台数据展示页面",
@@ -25,85 +23,7 @@
           "type": "any"
         }
       },
-      "rels": [
-        "setDataSourceDone"
-      ]
-    },
-    {
-      "id": "addItem",
-      "title": "添加一项",
-      "desc": "默认在末尾添加一项, 支持指定index(合理范围内)",
-      "schema": {
-        "type": "object",
-        "properties": {
-          "index": {
-            "type": "number",
-            "description": "添加项要放在原数据中的索引"
-          },
-          "value": {
-            "type": "any",
-            "description": "添加项的数据内容"
-          }
-        }
-      },
-      "rels": [
-        "addItemDone"
-      ]
-    },
-    {
-      "id": "removeItem",
-      "title": "删除一项",
-      "desc": "默认在末尾删除一项, 支持指定位置(合理范围内)",
-      "schema": {
-        "type": "number",
-        "description": "删除项在原数据源中的索引"
-      },
-      "rels": [
-        "removeItemDone"
-      ]
-    },
-    {
-      "id": "changeItem",
-      "title": "修改一项(根据index)",
-      "desc": "根据index, 将对应value改为指定值",
-      "schema": {
-        "type": "object",
-        "properties": {
-          "index": {
-            "type": "number",
-            "description": "修改项要放在原数据中的索引"
-          },
-          "value": {
-            "type": "any",
-            "description": "被修改项的新值"
-          }
-        }
-      },
-      "rels": [
-        "changeItemDone"
-      ]
-    },
-    {
-      "id": "moveUp",
-      "title": "上移",
-      "desc": "将指定位置的内容上移",
-      "schema": {
-        "type": "number"
-      },
-      "rels": [
-        "moveUpDone"
-      ]
-    },
-    {
-      "id": "moveDown",
-      "title": "下移",
-      "desc": "将指定位置的内容下移",
-      "schema": {
-        "type": "number"
-      },
-      "rels": [
-        "moveDownDone"
-      ]
+      "rels": ["setDataSourceDone"]
     }
   ],
   "outputs": [
@@ -117,62 +37,6 @@
           "title": "列项数据",
           "type": "any"
         }
-      }
-    },
-    {
-      "id": "addItemDone",
-      "title": "添加一项完成",
-      "desc": "列表的添加一项输入，触发添加一项完成事件",
-      "schema": {
-        "type": "object",
-        "properties": {
-          "index": {
-            "type": "number"
-          },
-          "value": {
-            "type": "object"
-          }
-        }
-      }
-    },
-    {
-      "id": "removeItemDone",
-      "title": "删除一项完成",
-      "desc": "列表的删除一项输入，触发删除一项完成完成事件",
-      "schema": {
-        "type": "number"
-      }
-    },
-    {
-      "id": "changeItemDone",
-      "title": "修改一项(根据index)完成",
-      "desc": "列表的修改一项输入，触发修改一项完成完成事件",
-      "schema": {
-        "type": "object",
-        "properties": {
-          "index": {
-            "type": "number"
-          },
-          "value": {
-            "type": "any"
-          }
-        }
-      }
-    },
-    {
-      "id": "moveUpDone",
-      "title": "上移完成",
-      "desc": "列表的指定位置上移输入，触发上移完成事件",
-      "schema": {
-        "type": "number"
-      }
-    },
-    {
-      "id": "moveDownDone",
-      "title": "下移完成",
-      "desc": "列表的指定位置下移输入，触发下移完成事件",
-      "schema": {
-        "type": "number"
       }
     }
   ],
