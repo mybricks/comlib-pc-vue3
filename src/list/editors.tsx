@@ -17,7 +17,6 @@ export default {
         options: [
           { label: '横向布局', value: Layout.Horizontal },
           { label: '纵向布局', value: Layout.Vertical },
-          { label: '栅格布局', value: Layout.Grid }
         ],
         value: {
           get({ data }: any) {
