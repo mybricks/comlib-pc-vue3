@@ -68,67 +68,17 @@ watch(() => props.data, (newVal) => {
 })
 
 const env = ref(props?.env)
-console.log("env11",env)
 watch(() => props.env, (newVal) => {
   console.log("env watch",newVal)
   env.value = newVal;
 })
 
-const DefaultFieldName = {
-  Title: 'title',
-  Key: 'key',
-  Children: 'children',
-}
-
-const getFieldNames = ({data,env}) => {
-  const keyFieldName = env?.edit && !data.useStaticData ? DefaultFieldName.Key : data.keyFieldName || DefaultFieldName.Key;
-  const titleFieldName = env?.edit && !data.useStaticData ? DefaultFieldName.Title : data.titleFieldName || DefaultFieldName.Title;
-  const childrenFieldName = env?.edit && !data.useStaticData ? DefaultFieldName.Children : data.childrenFieldName || DefaultFieldName.Children;
-  return {
-    keyFieldName,
-    titleFieldName,
-    childrenFieldName
-  }
-};
-
-const { keyFieldName, titleFieldName, childrenFieldName } = getFieldNames({ data, env });
-
-const outputNodeValues = (treeData,keys,{ keyFieldName, childrenFieldName },valueType) => {
-  const result = [];
-  treeData
-    .filter((def) => !!def)
-    .forEach((item) => {
-      if ((keys || []).includes(keyToString(item[keyFieldName]))) {
-        if (valueType === 'treeNode') {
-          result.push(deepCopy(item));
-        } else {
-          result.push(item[keyFieldName]);
-        }
-      }
-      result.push(
-        outputNodeValues(
-          item[childrenFieldName] || [],
-          keys,
-          { keyFieldName, childrenFieldName },
-          valueType
-        )
-      );
-    });
-  return flatten(result);
-};
-
 
 const onSelect = (keys, { node, selected }) => {
-  console.log("env",env)
+  console.log("env",props.env)
   if(env.edit) return
   console.log("onSelect",keys,node,selected)
-  const selectedValues = outputNodeValues(
-      data.treeData,
-      keys,
-      { keyFieldName, childrenFieldName },
-      data.valueType
-    );
-  outputs['click'](selectedValues);
+  props.outputs['click']({keys,node});
 }
 
 onMounted(() => {
