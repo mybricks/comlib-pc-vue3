@@ -17,7 +17,7 @@ npm install
 ![alt text](http://assets.mybricks.world/files/609850921054277/IEwsIssLzHjQ63icPABr3NRI5jBq9k5W-1727339111564.png)
 ## 5、安装之后，在VSCode界面左下角，找到调试按钮并点击；此时会自动打开一个网页，可以在上面实时预览你开发中的组件
 ![alt text](http://assets.mybricks.world/files/609850921054277/h7dIK2809jKGomlrKEVuAUZ2nSKYv9dA-1727339145759.png)
-## 6、新建一个组件，可以从已有的组件文件夹复制一份出来，然后修改com.json里面的描述内容（组价名称、namespace、图标等等）；最后往mybricks.json追加新组件的路径
+## 6、新建一个组件，可以从已有的组件文件夹复制一份出来，然后修改com.json里面的描述内容（组件名称、namespace、图标等等）；最后往mybricks.json追加新组件的路径
 > 每次修改完json相关的内容后，都要重启下服务才能生效（关闭调试后再打开调试）
 
 ![alt text](http://assets.mybricks.world/files/609850921054277/v1OP1pFtxrPIgTqyJH0vNtbQybzTNQRO-1727339204062.png)
