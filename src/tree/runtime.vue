@@ -4,10 +4,14 @@
     <Tree 
       v-if="treeData.length !== 0" 
       :tree-data="treeData" 
-      :defaultExpandAll="true" 
+      :defaultExpandAll="data.defaultExpandAll" 
       :showLine="data.showLine"
       :show-icon
       @Select="onSelect"
+      :autoExpandParent="data.autoExpandParent"
+      :checkable="data.checkable"
+      :disabled="data.disabled"
+      :draggable="data.draggable"
       >
       <template #icon="item">
         <template v-if="item.iconUrl">
@@ -100,8 +104,9 @@ onMounted(() => {
     }
 
     recursive(ds);
-
     treeData.value = ds;
+
+    props.outputs?.['onChange'](ds)
   })
 });
 
