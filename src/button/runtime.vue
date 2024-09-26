@@ -3,7 +3,7 @@
 </template>
 <script setup>
 
-import { ref, reactive, computed, onMounted } from 'vue';
+import { ref, reactive, computed, onMounted, watch } from 'vue';
 import { Button } from 'ant-design-vue'
 import 'ant-design-vue/lib/button/style'
 defineOptions({
@@ -13,6 +13,10 @@ defineOptions({
 const props = defineProps(['data', 'inputs', 'outputs', 'slots', 'env', 'style'])
 
 const text = ref(props.data.text)
+
+watch(() => props.data.text, (newVal) => {
+  text.value = newVal;
+})
 
 const onClick = () => {
   if (props.env.runtime) { // 运行态下才触发输出
