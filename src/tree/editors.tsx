@@ -1,6 +1,6 @@
 export default {
   "@init"({ style }) {
-    style.width = 'fit-content';
+    style.width = "fit-content";
     style.height = "auto";
   },
   "@resize": {
@@ -9,103 +9,180 @@ export default {
   ":root": {
     style: [
       {
-        title: '显示连线',
-        type: 'switch',
+        title: "显示连线",
+        type: "switch",
         value: {
           get({ data }) {
             return !!data.showLine;
           },
           set({ data }, value) {
             data.showLine = value;
-          }
-        }
+          },
+        },
       },
     ],
-    items: [
-      {
-        title: '空状态',
-        items: [
-          {
-            title: '自定义空状态图片',
-            type: 'switch',
-            value: {
-              get({ data }) {
-                return data.isImage;
+    items({ data }, cate0, cate1, cate2) {
+      cate0.title = "常规";
+      cate0.items = [
+        {
+          title: "基础配置",
+          items: [
+            {
+              title: "默认展开所有树节点",
+              type: "switch",
+              value: {
+                get({ data }) {
+                  return data.defaultExpandAll;
+                },
+                set({ data }, value) {
+                  data.defaultExpandAll = value;
+                },
               },
-              set({ data }, value) {
-                data.isImage = value;
-              }
-            }
-          },
-          {
-            title: '图片地址',
-            type: 'ImageSelector',
-            ifVisible({ data }) {
-              return !!data.isImage;
             },
-            value: {
-              get({ data }) {
-                return data.image;
+
+            {
+              title: "是否自动展开父节点",
+              type: "switch",
+              value: {
+                get({ data }) {
+                  return data.autoExpandParent;
+                },
+                set({ data }, value) {
+                  data.autoExpandParent = value;
+                },
               },
-              set({ data }, value) {
-                data.image = value;
-              }
-            }
-          },
-          {
-            title: '空状态文案',
-            type: 'Text',
-            description: '自定义描述内容',
-            options: {
-              placeholder: '自定义描述内容',
-              locale: true
             },
-            value: {
-              get({ data }) {
-                return data.description;
+            {
+              title: "是否展示图标",
+              type: "switch",
+              value: {
+                get({ data }) {
+                  return data.showIcon;
+                },
+                set({ data }, value) {
+                  data.showIcon = value;
+                },
               },
-              set({ data }, value) {
-                data.description = value;
-              }
-            }
-          }
-        ]
-      },
-      {
-        title: '事件',
-        items: [
-          {
-            title: '节点选中',
-            type: '_Event',
-            options: () => {
-              return {
-                outputId: 'click'
-              };
-            }
-          },
-          {
-            title: "禁用取消选中",
-            type: 'Switch',
-            value: {
-              get({ data }) {
-                return data.disableCancelSelect;
+            },
+          ],
+        },
+        {
+          title: "字段配置",
+          items: [
+            {
+              title: "标题字段",
+              type: "text",
+              options: {
+                placeholder: "默认值为 title",
               },
-              set({ data }, value) {
-                data.disableCancelSelect = value;
-              }
-            }
-          },
-          {
-            title: '数据变化',
-            type: '_Event',
-            options: () => {
-              return {
-                outputId: 'onChange'
-              };
-            }
-          }
-        ]
-      }
-    ],
+              value: {
+                get({ data }) {
+                  return data.fieldNames.title;
+                },
+                set({ data }, value) {
+                  data.fieldNames.title = value;
+                },
+              },
+            },
+            {
+              title: "标识字段",
+              description:
+                "所有节点的标识字段值在整个树范围内不能重复。不填时会根据节点位置生成唯一标识，存储在key属性中。",
+              type: "text",
+              options: {
+                placeholder: "节点的唯一标识，默认值为 key",
+              },
+              value: {
+                get({ data }) {
+                  return data.fieldNames.key;
+                },
+                set({ data }, value) {
+                  data.fieldNames.key = value;
+                },
+              },
+            },
+            {
+              title: "子节点字段",
+              type: "text",
+              options: {
+                placeholder: "默认值为 children",
+              },
+              value: {
+                get({ data }) {
+                  return data.fieldNames.children;
+                },
+                set({ data }, value) {
+                  data.fieldNames.children = value;
+                },
+              },
+            },
+          ],
+        },
+
+        {
+          title: "空状态",
+          items: [
+            {
+              title: "自定义图片地址",
+              type: "ImageSelector",
+              value: {
+                get({ data }) {
+                  return data.placeholder.image;
+                },
+                set({ data }, value) {
+                  data.placeholder.image = value;
+                },
+              },
+            },
+            {
+              title: "自定义文案",
+              type: "text",
+              description: "自定义描述内容",
+              options: {
+                placeholder: "自定义描述内容",
+                locale: true,
+              },
+              value: {
+                get({ data }) {
+                  return data.placeholder.description;
+                },
+                set({ data }, value) {
+                  data.placeholder.description = value;
+                },
+              },
+            },
+          ],
+        },
+        {
+          title: "事件",
+          items: [
+            {
+              title: "节点是否可被选中",
+              type: "Switch",
+              value: {
+                get({ data }) {
+                  return data.selectable;
+                },
+                set({ data }, value) {
+                  data.selectable = value;
+                },
+              },
+            },
+            {
+              ifVisible({ data }) {
+                return data.selectable;
+              },
+              title: "节点选中事件",
+              type: "_Event",
+              options: () => {
+                return {
+                  outputId: "onSelect",
+                };
+              },
+            },
+          ],
+        },
+      ];
+    },
   },
 };

@@ -50,7 +50,7 @@
   ],
   "outputs": [
     {
-      "id": "click",
+      "id": "onSelect",
       "title": "节点选中事件",
       "desc": "节点选中后，事件输出",
       "schema": {

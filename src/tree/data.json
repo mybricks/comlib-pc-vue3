@@ -1,4 +1,18 @@
 {
-    "description":"没有数据",
-    "valueType": "keyField"
+  "fieldNames": {
+    "title": "title",
+    "key": "key",
+    "children": "children"
+  },
+
+  "placeholder": {
+    "description": "",
+    "image": ""
+  },
+
+  "defaultExpandAll": true,
+  "selectable": true,
+  "showIcon": false,
+
+  "showLine": false
 }
