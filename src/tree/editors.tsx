@@ -28,31 +28,6 @@ export default {
           title: "基础配置",
           items: [
             {
-              title: "默认展开所有树节点",
-              type: "switch",
-              value: {
-                get({ data }) {
-                  return data.defaultExpandAll;
-                },
-                set({ data }, value) {
-                  data.defaultExpandAll = value;
-                },
-              },
-            },
-
-            {
-              title: "是否自动展开父节点",
-              type: "switch",
-              value: {
-                get({ data }) {
-                  return data.autoExpandParent;
-                },
-                set({ data }, value) {
-                  data.autoExpandParent = value;
-                },
-              },
-            },
-            {
               title: "是否展示图标",
               type: "switch",
               value: {

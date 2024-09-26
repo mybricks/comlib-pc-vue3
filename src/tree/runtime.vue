@@ -7,7 +7,7 @@
 
     <!-- 非空状态 -->
     <template v-if="treeData.length !== 0">
-      <Tree :tree-data="treeData" :defaultExpandAll="props.data.defaultExpandAll" :showIcon="props.data.showIcon"
+      <Tree :tree-data="treeData" :defaultExpandAll="true" :autoExpandParent="true"  :showIcon="props.data.showIcon"
         :showLine="props.data.showLine" :selectable="props.data.selectable" @select="onSelect"
         :fieldNames="props.data.fieldNames">
         <template #icon="item">
