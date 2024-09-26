@@ -34,7 +34,7 @@ npm install
 ![alt text](http://assets.mybricks.world/files/609850921054277/npX7zzVqdz3URIbT5P4RJvre5KyRxseO-1727339275303.png)
 # 三、如何使用
 ## 1、点击画布右侧组件库图标，打开组件库列表，在最下方找到添加组件库按钮
-![alt text](http://assets.mybricks.world/files/609850921054277/npX7zzVqdz3URIbT5P4RJvre5KyRxseO-1727339275303.png)
+![alt text](http://assets.mybricks.world/files/609850921054277/SeJTWTNIewzEaoMv7xSQpVzqmjG4AsTL-1727352396805.png)
 
 ## 2、在选择组件库面板，选中刚刚发布的组件库，点击确定
 ![alt text](http://assets.mybricks.world/files/609850921054277/xl0GaKac4A5RlX5JvgyPCfA82nSHVgBg-1727339317825.png)
