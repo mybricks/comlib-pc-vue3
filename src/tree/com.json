@@ -49,5 +49,51 @@
     }
   ],
   "outputs": [
+    {
+      "id": "click",
+      "title": "节点选中事件",
+      "desc": "节点选中后，事件输出",
+      "schema": {
+        "type": "array",
+        "description": "所有选中的节点的key",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    {
+      "id": "onChange",
+      "title": "数据变化",
+      "desc": "更改树的数据出，触发数据变化输出",
+      "schema": {
+        "title": "树组件数据",
+        "type": "array",
+        "description": "树组件的数据",
+        "items": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "title": "标题",
+              "type": "string",
+              "description": "节点的标题"
+            },
+            "key": {
+              "title": "字段名",
+              "type": "string",
+              "description": "节点的字段名"
+
+            },
+            "children": {
+              "title": "子项",
+              "type": "array",
+              "description": "节点的子项",
+              "items": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    }
   ]
 }
