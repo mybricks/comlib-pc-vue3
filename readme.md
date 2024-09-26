@@ -22,7 +22,7 @@ npm install
 
 ![alt text](http://assets.mybricks.world/files/609850921054277/v1OP1pFtxrPIgTqyJH0vNtbQybzTNQRO-1727339204062.png)
 
-# 如何发布组件库
+# 二、如何发布组件库
 ## 1、正确填写mybricks.json中的domain
 - 例如：https://test.mybricks.world
 ## 2、点击发布按钮
@@ -32,7 +32,7 @@ npm install
 ## 3、发布成功
 点击平台上的物料中心，组件库列表中，即可看到刚刚发布的组件库
 ![alt text](http://assets.mybricks.world/files/609850921054277/npX7zzVqdz3URIbT5P4RJvre5KyRxseO-1727339275303.png)
-# 如何使用
+# 三、如何使用
 ## 1、点击画布右侧组件库图标，打开组件库列表，在最下方找到添加组件库按钮
 ![alt text](http://assets.mybricks.world/files/609850921054277/npX7zzVqdz3URIbT5P4RJvre5KyRxseO-1727339275303.png)
 
