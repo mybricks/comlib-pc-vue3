@@ -6,7 +6,7 @@
   "author": "MyBricks team",
   "author_name": "板砖团队",
   "data": "./data.json",
-  "icon":"./icon.svg",
+  "icon": "./icon.svg",
   "runtime": "./runtime.vue",
   "editors": "./editors.tsx",
   "inputs": [
@@ -54,10 +54,18 @@
       "title": "节点选中事件",
       "desc": "节点选中后，事件输出",
       "schema": {
-        "type": "array",
-        "description": "所有选中的节点的key",
-        "items": {
-          "type": "string"
+        "type": "object",
+        "properties": {
+          "title": {
+            "title": "keys",
+            "description": "选中的节点key",
+            "type": "any"
+          },
+          "key": {
+            "title": "node",
+            "description": "选中的节点详情",
+            "type": "any"
+          }
         }
       }
     },
@@ -81,7 +89,6 @@
               "title": "字段名",
               "type": "string",
               "description": "节点的字段名"
-
             },
             "children": {
               "title": "子项",
